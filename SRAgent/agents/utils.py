@@ -310,6 +310,20 @@ def set_model(
             service_tier=service_tier,
             timeout=timeout if service_tier == "flex" else None,
         )
+    elif model_name.startswith("deepseek"):
+        api_key = os.getenV("DEEPSEEK_API_KEY")
+        if not api_key:
+            raise ValueError("DEEPSEEK_API_KEY must be set for Deepseek models")
+        model = DeepSeekChatOpenAI(
+	        model_name=model name,
+	        api_key=api_key,
+	        base_url=os.getenv(
+		        "DEEPSEEK_API_BASE","https://api.deepseek.com/beta"
+	        ),
+	        temperature=temperature,
+	        max_tokens=max_tokens,
+	        extra_body={"thinking":{"type":"disabled"}},
+        )
     elif model_name.startswith("gemini"):
         # Gemini 2.5+ models support a configurable thinking_budget.
         # Map reasoning_effort to thinking tokens (mirrors the Claude branch),
