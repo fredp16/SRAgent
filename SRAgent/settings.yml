@@ -236,6 +236,17 @@ gemini:
   service_tier:
     default: "default"
 
+deepseek:
+  db_name: "sragent-test"
+  models:
+    default: "deepseek-flash"
+  temperature:
+    default: 0.1
+  reasoning_effort:
+    default: ""
+  service_tier:
+    default: "default"
+    
 gpt-4.1-mini:
   db_name: "sragent-test"
   models:
